@@ -1,7 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn format \
-&& yarn test:all:cov \
-&& yarn badge:all \
-&& git add docs
+yarn format && git add .

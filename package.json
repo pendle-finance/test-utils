@@ -1,96 +1,44 @@
 {
-  "version": "0.2.2",
+  "name": "@pendle/utils-monorepo",
+  "private": true,
+  "author": "Tran Cong Viet An",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pendle-finance/utils.git"
+  },
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "engines": {
     "node": ">=14"
   },
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
+    "prepare": "husky install",
     "lint": "eslint . --ext .js,.ts",
     "commitlint": "commitlint --edit \"$1\"",
-    "prepare": "tsdx build && husky install",
-    "size": "size-limit",
-    "analyze": "size-limit --why",
-    "format": "yarn prettier --write \"{src,test}/**/*.{ts,js}\"",
+    "format": "yarn prettier --write \"packages/*/{src,test}/**/*.{ts,js}\"",
     "fork": "yarn hardhat node",
-    "test:all": "yarn test:unit && yarn test:e2e",
-    "test:all:cov": "yarn test:unit:cov && yarn test:e2e:cov",
-    "test:all:ci": "yarn test:unit:cov --ci --maxWorkers=2 && yarn test:e2e:cov --ci --maxWorkers=2",
-    "test:unit": "jest",
-    "test:unit:cov": "jest --coverage",
-    "test:unit:watch": "jest --watch",
-    "test:unit:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config jest-e2e.config.ts",
-    "test:e2e:cov": "jest --config jest-e2e.config.ts --coverage",
-    "test:e2e:watch": "jest --config jest-e2e.config.ts --watch",
-    "test:e2e:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand --config jest-e2e.config.ts",
-    "badge:unit": "jest-coverage-badges --input ./coverage/unit/coverage-summary.json --output docs/unit-coverage",
-    "badge:e2e": "jest-coverage-badges --input ./coverage/e2e/coverage-summary.json --output docs/e2e-coverage",
-    "badge:all": "yarn badge:unit && yarn badge:e2e",
     "semantic-release": "semantic-release"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pendle-finance/pendle-sdk-rewrite.git"
-  },
-  "name": "@pendle/sdk-rewrite",
-  "author": "Tran Cong Viet An",
-  "module": "dist/sdk-rewrite.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/sdk-rewrite.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/sdk-rewrite.esm.js",
-      "limit": "10 KB"
-    }
-  ],
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
-    "@ethereum-waffle/jest": "^3.3.0",
     "@nomiclabs/hardhat-ethers": "^2.0.0",
+    "size-limit": "^7.0.4",
     "@size-limit/preset-small-lib": "^7.0.4",
-    "@typechain/ethers-v5": "^8.0.5",
-    "@typechain/hardhat": "^3.0.0",
-    "@types/eslint": "^8.2.1",
-    "@typescript-eslint/eslint-plugin": "^5.7.0",
-    "@typescript-eslint/parser": "^5.7.0",
-    "@zerollup/ts-transform-paths": "^1.7.18",
-    "dotenv": "^10.0.0",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^25.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "@types/eslint": "^8.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "dotenv": "^10.0.0",
     "hardhat": "^2.8.0",
     "husky": "^7.0.4",
-    "jest": "^27.4.5",
-    "jest-coverage-badges": "^1.1.2",
+    "lerna": "^4.0.0",
     "prettier": "^2.5.1",
-    "rollup-plugin-typescript2": "^0.31.1",
-    "semantic-release": "^18.0.1",
-    "size-limit": "^7.0.4",
-    "ts-jest": "^27.1.1",
-    "ts-node": "^10.4.0",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.3.1",
-    "ttypescript": "^1.5.13",
-    "typechain": "^6.0.5",
-    "typedoc": "^0.22.10",
-    "typescript": "^4.5.4"
+    "semantic-release": "^18.0.1"
   },
-  "dependencies": {
-    "@openzeppelin/contracts": "^4.4.1",
-    "@pendle/constants": "^0.6.1",
-    "ethers": "^5.0.0"
-  },
+  "dependencies": {},
   "publishConfig": {
     "access": "restricted"
   }

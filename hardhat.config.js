@@ -1,9 +1,10 @@
 const dotenv = require('dotenv');
+const path = require('path');
 
 const { task } = require('hardhat/config');
 require('@nomiclabs/hardhat-ethers');
 
-dotenv.config();
+dotenv.config({ path: path.join(__dirname, '.env') });
 
 task('accounts', 'Prints the list of accounts', async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();

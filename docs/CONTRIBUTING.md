@@ -7,18 +7,18 @@ Last update: 11 Dec 2021 By An Tran
 For a small library, in my opinion there should be two to three test levels:
 
 - _Unit test_: for each and every function or class
-- _Module level integration tests_: test the main exports of a given module (subfolders of the [src](src) folder).
+- _Module level integration tests_: test the main exports of a given module (subfolders of the src folder).
   - This is optional if the library is small enough.
 - _End-to-end tests (or acceptance tests)_: test the main export of the whole library.
   - This level tests the **behaviour** of the SDK toward library consumers.
 
 ## Structure
 
-- The [src](src) folder is for writing the source code, unit tests and module level integration tests.
-- The [src/index.ts](src/index.ts) file is the main export point of the library.
-- The [test](test) folder is for writing end-to-end tests
+- The src folder is for writing the source code, unit tests and module level integration tests.
+- The src file is the main export point of the library.
+- The test folder is for writing end-to-end tests
   - Those tests will test what the SDK user will use.
-  - Note that those test must only import from the [src/index.ts](src/index.ts) file, because this is the only place that user can reliably import anything from our library.
+  - Note that those test must only import from the src/types.ts file, because this is the only place that user can reliably import anything from our library.
 
 ## Commands
 
@@ -48,5 +48,6 @@ We use [typedoc](https://typedoc.org/) to extract doc comments, type information
 This approach ensure Single Source of Truth state of the repo, everything auxiliary data is generated from the code, which helps ease development.
 
 To manually generate and view documentation locally on your development machine:
+
 - Run `yarn typedoc`
 - Use a quick webserver like [serve](https://www.npmjs.com/package/serve) to serve up the documentation

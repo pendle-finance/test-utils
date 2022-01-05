@@ -1,6 +1,8 @@
 import type { Config } from '@jest/types';
 import 'ts-jest';
 import { pathsToModuleNameMapper } from 'ts-jest';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import tsConfig from './tsconfig.json';
 
 const config: Config.InitialOptions = {
@@ -12,7 +14,7 @@ const config: Config.InitialOptions = {
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
-  collectCoverageFrom: ['src/**/*.ts', '!src/**/index.ts'], // don't check coverage of index files in unit testing.
+  collectCoverageFrom: ['src/**/*.ts', '!src/**/types.ts'], // don't check coverage of index files in unit testing.
   coverageDirectory: './coverage/unit/',
   coverageReporters: ['json-summary', 'lcov', 'text'],
   testEnvironment: 'node',
