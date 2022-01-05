@@ -1,6 +1,6 @@
 {
   "name": "@pendle/test-utils",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/pendle-finance/utils.git"
@@ -56,7 +56,7 @@
   },
   "dependencies": {
     "@pendle/constants": "^0.6.1",
-    "@pendle/utils": "^0.0.1",
+    "@pendle/utils": "^0.0.2",
     "ethers": "^5.0.0"
   },
   "publishConfig": {
