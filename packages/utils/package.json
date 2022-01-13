@@ -27,7 +27,6 @@
     "node": ">=14"
   },
   "scripts": {
-    "prepare": "tsdx build",
     "start": "tsdx watch",
     "build": "tsdx build",
     "size": "size-limit:why",

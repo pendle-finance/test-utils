@@ -1,4 +1,4 @@
-export { TEST_CONSTANTS, HARDHAT_PROVIDER_URL } from './constants';
+export { TEST_CONSTANTS, HARDHAT_DEFAULT_PROVIDER_URL } from './constants';
 export { TestAddress } from './types';
 export {
   NetworkDetails,

@@ -1,7 +1,7 @@
 import { ethers, network } from 'hardhat';
 import { BigNumber as BN, Signer, providers } from 'ethers';
 import '@nomiclabs/hardhat-ethers';
-import { HARDHAT_PROVIDER_URL } from './constants';
+import { HARDHAT_DEFAULT_PROVIDER_URL } from './constants';
 import { type Address } from '@pendle/utils';
 
 export type NetworkDetails = {
@@ -10,7 +10,7 @@ export type NetworkDetails = {
 };
 
 export function getTestingNetworkDetail(): NetworkDetails {
-  const provider = new providers.JsonRpcProvider(HARDHAT_PROVIDER_URL);
+  const provider = new providers.JsonRpcProvider(HARDHAT_DEFAULT_PROVIDER_URL);
   const signer = provider.getSigner();
   return { provider, signer };
 }
@@ -33,7 +33,7 @@ export async function resetHardhatNetwork(blockNumber?: number): Promise<void> {
     params: [
       {
         forking: {
-          jsonRpcUrl: HARDHAT_PROVIDER_URL,
+          jsonRpcUrl: HARDHAT_DEFAULT_PROVIDER_URL,
           blockNumber,
         },
       },

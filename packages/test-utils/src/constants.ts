@@ -1,14 +1,9 @@
 import type { Erc20Token, PendleConstsType } from '@pendle/constants';
-import type { TestAddress } from './types';
 import { AvaxConsts, EthConsts } from '@pendle/constants';
-import { validateAndParseChainId } from '@pendle/utils';
+import type { TestAddress } from './types';
+import { CHAIN_CONSTS, validateAndParseChainId } from '@pendle/utils';
 
-export const HARDHAT_PROVIDER_URL = 'http://localhost:8545';
-
-const CHAIN_CONSTS = {
-  [AvaxConsts.common.CHAIN_ID]: AvaxConsts,
-  [EthConsts.common.CHAIN_ID]: EthConsts,
-};
+export const HARDHAT_DEFAULT_PROVIDER_URL = 'http://localhost:8545';
 
 const AvaxAccounts = {
   SNOW: '0xB5E4846Db18d2B859c32951C843a5b7A2bf19126',
@@ -27,11 +22,19 @@ class TestConstants {
   }
 
   get const(): PendleConstsType {
-    return CHAIN_CONSTS[this.chainId];
+    const chainConst = CHAIN_CONSTS[this.chainId];
+    if (!chainConst) {
+      return CHAIN_CONSTS[AvaxConsts.common.CHAIN_ID];
+    }
+    return chainConst;
   }
 
   get addresses(): TestAddress {
-    return TEST_ADDRESSES[this.chainId];
+    const testAddresses = TEST_ADDRESSES[this.chainId];
+    if (!testAddresses) {
+      return TEST_ADDRESSES[AvaxConsts.common.CHAIN_ID];
+    }
+    return testAddresses;
   }
 
   get native(): Erc20Token {
