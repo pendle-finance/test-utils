@@ -23,17 +23,23 @@ export async function impersonateAccountInHardhat(address: Address): Promise<Sig
   return ethers.getSigner(address);
 }
 
-export async function resetHardhatNetwork(blockNumber?: number): Promise<void> {
+export interface ResetOption {
+  blockNumber?: number;
+  providerUrl?: string;
+}
+
+export async function resetHardhatNetwork({ blockNumber, providerUrl }: ResetOption): Promise<void> {
   if (!blockNumber) {
     const blockNumberEnvString = process.env.BLOCK_NUMBER;
     blockNumber = blockNumberEnvString ? parseInt(blockNumberEnvString) : undefined;
   }
+
   await network.provider.request({
     method: 'hardhat_reset',
     params: [
       {
         forking: {
-          jsonRpcUrl: HARDHAT_DEFAULT_PROVIDER_URL,
+          jsonRpcUrl: providerUrl,
           blockNumber,
         },
       },
