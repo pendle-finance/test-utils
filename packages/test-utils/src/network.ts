@@ -1,16 +1,19 @@
 import { ethers, network } from 'hardhat';
-import { BigNumber as BN, Signer, providers } from 'ethers';
+import { BigNumber as BN, providers, type Signer } from 'ethers';
 import '@nomiclabs/hardhat-ethers';
-import { HARDHAT_DEFAULT_PROVIDER_URL } from './constants';
-import { type Address } from '@pendle/utils';
+import { LOCAL_CHAIN_ID, PROVIDER_URL } from './constants';
+import type { Address } from '@pendle/utils';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 export type NetworkDetails = {
   provider: providers.Provider;
   signer: Signer;
 };
 
-export function getTestingNetworkDetail(): NetworkDetails {
-  const provider = new providers.JsonRpcProvider(HARDHAT_DEFAULT_PROVIDER_URL);
+export function getTestingNetworkDetail(chainId?: number): NetworkDetails {
+  const provider = new providers.JsonRpcProvider(PROVIDER_URL[chainId ?? LOCAL_CHAIN_ID]);
   const signer = provider.getSigner();
   return { provider, signer };
 }
@@ -24,11 +27,11 @@ export async function impersonateAccountInHardhat(address: Address): Promise<Sig
 }
 
 export interface ResetOption {
+  chainId: number;
   blockNumber?: number;
-  providerUrl?: string;
 }
 
-export async function resetHardhatNetwork({ blockNumber, providerUrl }: ResetOption): Promise<void> {
+export async function resetHardhatNetwork({ chainId, blockNumber }: ResetOption): Promise<void> {
   if (!blockNumber) {
     const blockNumberEnvString = process.env.BLOCK_NUMBER;
     blockNumber = blockNumberEnvString ? parseInt(blockNumberEnvString) : undefined;
@@ -39,7 +42,7 @@ export async function resetHardhatNetwork({ blockNumber, providerUrl }: ResetOpt
     params: [
       {
         forking: {
-          jsonRpcUrl: providerUrl,
+          jsonRpcUrl: PROVIDER_URL[chainId ?? LOCAL_CHAIN_ID],
           blockNumber,
         },
       },

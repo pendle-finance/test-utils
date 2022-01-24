@@ -1,7 +1,14 @@
 import { BigNumber as BN, constants } from 'ethers';
 import { AvaxConsts, MiscConsts } from '@pendle/constants';
-import { getTestingNetworkDetail, impersonateAccountInHardhat, setBalanceInHardhatNetwork } from './network';
+import {
+  getTestingNetworkDetail,
+  impersonateAccountInHardhat,
+  resetHardhatNetwork,
+  setBalanceInHardhatNetwork,
+} from './network';
 import { TEST_CONSTANTS } from './constants';
+
+const chainId = AvaxConsts.common.CHAIN_ID;
 
 describe('test getChainDetails', () => {
   it('should have chain ID, provider, signer', () => {
@@ -24,9 +31,13 @@ describe('test setFund', () => {
   it('should be able to setFund', async () => {
     const balanceInETH = MiscConsts.ONE_E_12.toString();
     const signer = await impersonateAccountInHardhat(avalancheConstant.addresses.SNOW);
+    const initialBalance = await signer.getBalance();
     await setBalanceInHardhatNetwork({ balanceInETH, address: avalancheConstant.addresses.SNOW });
 
     const expectedBalance = BN.from(balanceInETH).mul(constants.WeiPerEther);
     await expect(signer.getBalance()).resolves.toEqBN(expectedBalance);
+
+    await resetHardhatNetwork({ chainId });
+    await expect(signer.getBalance()).resolves.toEqBN(initialBalance);
   });
 });
