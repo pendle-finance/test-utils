@@ -29,10 +29,9 @@
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@/*": ["./*"],
-      "@pendle/sdk-rewrite": ["./index.ts"]
+      "@/*": ["./*"]
     },
-    "typeRoots": ["./node_modules/@types"],
+    "typeRoots": ["node_modules/@types"],
     "plugins": [{ "transform": "@zerollup/ts-transform-paths" }]
   },
   "ts-node": {

@@ -25,9 +25,6 @@ jobs:
       - name: Install dependencies and build, if needed
         run: yarn install --frozen-lockfile
 
-      - name: Test and Generate Coverage Badge
-        run: yarn test:all:ci && yarn badge:unit && yarn badge:e2e
-
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.PUSH_TOKEN }}

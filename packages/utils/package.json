@@ -1,0 +1,63 @@
+{
+  "name": "@pendle/utils",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pendle-finance/utils.git"
+  },
+  "license": "MIT",
+  "author": "Tran Cong Viet An",
+  "module": "dist/utils.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/utils.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/utils.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "prepublishOnly": "tsdx build",
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "size": "size-limit:why",
+    "test": "jest",
+    "test:cov": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:ci": "yarn test:cov --ci --maxWorkers=2"
+  },
+  "devDependencies": {
+    "@ethereum-waffle/jest": "^3.3.0",
+    "@size-limit/preset-small-lib": "^7.0.4",
+    "@zerollup/ts-transform-paths": "^1.7.18",
+    "jest": "^27.4.5",
+    "rollup-plugin-typescript2": "^0.31.1",
+    "size-limit": "^7.0.4",
+    "ts-jest": "^27.1.1",
+    "ts-node": "^10.4.0",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.1",
+    "ttypescript": "^1.5.13",
+    "typechain": "^6.0.5",
+    "typedoc": "^0.22.10",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@pendle/constants": "^0.6.1",
+    "ethers": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}
