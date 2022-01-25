@@ -1,9 +1,9 @@
+import * as dotenv from 'dotenv';
 import { ethers, network } from 'hardhat';
 import { BigNumber as BN, providers, type Signer } from 'ethers';
 import '@nomiclabs/hardhat-ethers';
-import { LOCAL_CHAIN_ID, PROVIDER_URL } from './constants';
+import { LOCAL_CHAIN_ID, PROVIDER_URL } from '@/constants';
 import type { Address } from '@pendle/utils';
-import * as dotenv from 'dotenv';
 
 dotenv.config();
 

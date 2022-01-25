@@ -40,8 +40,10 @@
   "devDependencies": {
     "@ethereum-waffle/jest": "^3.3.0",
     "@size-limit/preset-small-lib": "^7.0.4",
+    "@types/lodash": "^4.14.178",
     "@zerollup/ts-transform-paths": "^1.7.18",
     "jest": "^27.4.5",
+    "lodash": "^4.17.21",
     "rollup-plugin-typescript2": "^0.31.1",
     "size-limit": "^7.0.4",
     "ts-jest": "^27.1.1",

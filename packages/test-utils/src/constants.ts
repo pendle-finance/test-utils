@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 import { AvaxConsts, EthConsts, TokensConstsType } from '@pendle/constants';
 import { CHAIN_CONSTS, validateAndParseChainId } from '@pendle/utils';
 import type { Erc20Token, PendleConstsType } from '@pendle/constants';
-import type { TestAddress } from './types';
+import type { TestAddress } from '@/types';
 
 dotenv.config();
 
