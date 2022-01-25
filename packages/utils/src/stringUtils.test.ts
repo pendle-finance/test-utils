@@ -33,7 +33,7 @@ describe(Array.prototype.includesIgnoreCase, () => {
 });
 
 describe(findIgnoreCase, () => {
-  const obj: Record<any, string> = {
+  const obj: Record<string | number, string> = {
     a: 'a',
     [1]: 'b',
   };
