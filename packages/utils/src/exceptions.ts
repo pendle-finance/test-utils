@@ -9,3 +9,9 @@ export class InvalidChainIdError extends Error {
     super(`Invalid Chain ID ${chainId}.`);
   }
 }
+
+export class AbsentProviderError extends Error {
+  constructor() {
+    super('Provider is required for reading');
+  }
+}

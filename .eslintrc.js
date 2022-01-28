@@ -17,5 +17,6 @@ module.exports = {
     quotes: ['error', 'single', { avoidEscape: true }],
     semi: ['error', 'always'],
     'spaced-comment': ['error', 'always', { exceptions: ['-', '+'] }],
+    'no-non-null-assertion': 0,
   },
 };

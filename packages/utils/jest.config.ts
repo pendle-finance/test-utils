@@ -33,6 +33,7 @@ const config: Config.InitialOptions = {
   },
   setupFiles: ['dotenv/config'],
   setupFilesAfterEnv: ['./jestSetup'],
+  testTimeout: 30000,
 };
 
 export default config;

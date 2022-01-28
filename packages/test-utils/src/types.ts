@@ -1,4 +1,4 @@
-import { Address } from '@pendle/utils';
+import type { Address } from '@pendle/utils';
 
 export type TestAddress = {
   SNOW: Address;
