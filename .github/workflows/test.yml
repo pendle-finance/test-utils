@@ -26,11 +26,17 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: "yarn"
 
-      - name: Yarn Install
-        run: yarn install --frozen-lockfile
+      - name: Yarn Install at Root
+        run: yarn install --immutable
+      
+      - name: Lerna Bootstrap Packages
+        run: yarn lerna bootstrap
+
+      - name: Fix Type Issues in Packages
+        run: yarn fix
 
       - name: Run Hardhat Node
         run: yarn fork & sleep 20 # wait 20 seconds for the server to fully initialize
 
       - name: Test
-        run: yarn test:all:ci
+        run: yarn lerna exec yarn test:ci

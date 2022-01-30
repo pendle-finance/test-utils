@@ -1,9 +1,9 @@
-export { TEST_CONSTANTS, HARDHAT_DEFAULT_PROVIDER_URL } from './constants';
-export { TestAddress } from './types';
+export { TEST_CONSTANTS, PROVIDER_URL } from '@/constants';
 export {
-  NetworkDetails,
   impersonateAccountInHardhat,
   resetHardhatNetwork,
   setBalanceInHardhatNetwork,
   getTestingNetworkDetail,
-} from './network';
+  type NetworkDetails,
+} from '@/network';
+export type { TestAddress } from '@/types';
