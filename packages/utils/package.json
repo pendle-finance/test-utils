@@ -43,7 +43,6 @@
     "@types/lodash": "^4.14.178",
     "@zerollup/ts-transform-paths": "^1.7.18",
     "jest": "^27.4.5",
-    "lodash": "^4.17.21",
     "rollup-plugin-typescript2": "^0.31.1",
     "size-limit": "^7.0.4",
     "ts-jest": "^27.1.1",
@@ -57,7 +56,8 @@
   },
   "dependencies": {
     "@pendle/constants": "^0.6.1",
-    "ethers": "^5.0.0"
+    "ethers": "^5.0.0",
+    "lodash": "^4.17.21"
   },
   "publishConfig": {
     "access": "restricted"
