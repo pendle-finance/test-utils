@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 declare global {
   interface String {
     equalsIgnoreCase(other: string): boolean;
@@ -22,5 +20,6 @@ Array.prototype.includesIgnoreCase = function <T>(value: T): boolean {
 type ObjectKey = string | number | symbol;
 export function findIgnoreCase<T>(obj: Record<ObjectKey, T>, key: ObjectKey): T | undefined {
   const keyStr = String(key);
-  return _.find(obj, (value: T, objKey: ObjectKey) => keyStr.equalsIgnoreCase(String(objKey)));
+  const matchKey = ([objKey, value]: [ObjectKey, T]) => keyStr.equalsIgnoreCase(String(objKey));
+  return (Object.entries(obj).find(matchKey) ?? [])[1];
 }
