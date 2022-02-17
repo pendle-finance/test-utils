@@ -1,6 +1,6 @@
 {
   "name": "@pendle/test-utils",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "repository": {
     "type": "git",
     "url": "https://github.com/pendle-finance/utils.git"
@@ -56,7 +56,7 @@
   "dependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",
     "@pendle/constants": "^0.6.5",
-    "@pendle/utils": "^0.2.3",
+    "@pendle/utils": "^0.2.4",
     "ethers": "^5.5.4",
     "hardhat": "^2.8.4"
   },
