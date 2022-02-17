@@ -39,24 +39,24 @@
   },
   "devDependencies": {
     "@ethereum-waffle/jest": "^3.3.0",
-    "@size-limit/preset-small-lib": "^7.0.4",
+    "@size-limit/preset-small-lib": "^7.0.8",
     "@types/lodash": "^4.14.178",
     "@zerollup/ts-transform-paths": "^1.7.18",
-    "jest": "^27.4.5",
-    "rollup-plugin-typescript2": "^0.31.1",
-    "size-limit": "^7.0.4",
-    "ts-jest": "^27.1.1",
-    "ts-node": "^10.4.0",
+    "jest": "^27.5.1",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "size-limit": "^7.0.8",
+    "ts-jest": "^27.1.3",
+    "ts-node": "^10.5.0",
     "tsdx": "^0.14.1",
     "tslib": "^2.3.1",
     "ttypescript": "^1.5.13",
-    "typechain": "^6.0.5",
-    "typedoc": "^0.22.10",
-    "typescript": "^4.5.4"
+    "typechain": "^7.0.0",
+    "typedoc": "^0.22.11",
+    "typescript": "^4.5.5"
   },
   "dependencies": {
-    "@pendle/constants": "^0.6.1",
-    "ethers": "^5.0.0"
+    "@pendle/constants": "^0.6.5",
+    "ethers": "^5.5.4"
   },
   "publishConfig": {
     "access": "restricted"
