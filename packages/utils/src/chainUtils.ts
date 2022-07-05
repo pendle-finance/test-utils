@@ -1,11 +1,12 @@
-import { BigNumber as BN, Contract, providers, utils } from 'ethers';
+import { BigNumber as BN, Contract, providers, utils, Wallet } from 'ethers';
 import { EthConsts, MiscConsts } from '@pendle/constants';
 import { AbsentProviderError, InvalidChainIdError, InvalidAddressError } from './exceptions';
 import type { Address, ProviderOrSigner } from './types';
-import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import {} from '@nomiclabs/hardhat-ethers/src/internal/type-extensions';
 import hre from 'hardhat';
-
+import fetch from 'node-fetch';
+import { getApi, getKey } from '@/api_endpoint/endpoint';
+import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/src/signers';
 // TODO
 
 export async function verifyContract(contract: string, constructor: any[]) {
@@ -15,12 +16,11 @@ export async function verifyContract(contract: string, constructor: any[]) {
   });
 }
 
-export async function deploy(deployer: SignerWithAddress, contractName: string, args: any[], verify?: boolean) {
-  const contractFactory = await hre.ethers.getContractFactory(contractName);
+export async function deploy(deployer: Wallet | SignerWithAddress, contractName: any, args: any[], verify?: boolean) {
+  const contractFactory = await hre.ethers.getContractFactory(contractName.abi, contractName.bytecode);
   const contract = await contractFactory.connect(deployer).deploy(...args);
   await contract.deployed();
   console.log(`${contractName} deployed at address: ${contract.address}`);
-
   if (verify === true) {
     await verifyContract(contract.address, args);
   }
@@ -51,20 +51,19 @@ export async function getContractByAbi(abi: any[], contractAddress: Address) {
 
 export async function getAbiByAddressAndChainId(chainid: number, contractAddress: string) {
   try {
-    const response = await fetch(
-      `${apiMap.get(chainid)}&address=${contractAddress}&apikey=${apikeyName.get(chainid)}`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-        },
-      }
-    );
+    let url = `${getApi(chainid)}&address=${contractAddress}&apikey=${getKey(chainid)}`;
+    // let url = "https://api.snowtrace.io/api?module=contract&action=getabi&address=0x4Db6c78422A8CdD09d984096F68C705C7B479A58";
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    });
     if (!response.ok) {
       throw new Error(`Error! status: ${response.status}`);
     }
     let result = await response.json();
-    return result;
+    return result.result;
   } catch (error) {
     if (error instanceof Error) {
       console.log('error message: ', error.message);

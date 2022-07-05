@@ -7,4 +7,11 @@ const snowtraceEndpoint = 'https://api.snowtrace.io/api?module=contract&action=g
 
 // put
 apiMap.set(43114, snowtraceEndpoint);
-apiMap.set(43114, SNOWTRACE_KEY);
+apikeyName.set(43114, SNOWTRACE_KEY);
+
+export function getApi(chainid: number) {
+  return apiMap.get(chainid);
+}
+export function getKey(chainid: number) {
+  return apikeyName.get(chainid);
+}
