@@ -1851,20 +1851,12 @@
   resolved "https://registry.yarnpkg.com/@nomiclabs/hardhat-ethers/-/hardhat-ethers-2.0.5.tgz#131b0da1b71680d5a01569f916ae878229d326d3"
   integrity sha512-A2gZAGB6kUvLx+kzM92HKuUF33F1FSe90L0TmkXkT2Hh0OKRpvWZURUSU2nghD2yC4DzfEZ3DftfeHGvZ2JTUw==
 
-"@pendle/constants@^0.6.1", "@pendle/constants@^0.6.5":
+"@pendle/constants@^0.6.5":
   version "0.6.5"
   resolved "https://registry.yarnpkg.com/@pendle/constants/-/constants-0.6.5.tgz#5dd4b2704e54a99421c5f3ce87fdde40cc80aefb"
   integrity sha512-yZwBDpdwikQxbYgEFXAIh/lsWDzVwURji7efBRyGDhHjOz3VeakIn6BRVSC1aTPHCmdHTsHYUobnAMKV8OPXwA==
   dependencies:
     ethers "^5.0.1"
-
-"@pendle/utils@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@pendle/utils/-/utils-0.2.3.tgz#bf39b3fd1bb6c772e06e7cb47e09184be72684dc"
-  integrity sha512-ZmutCCOLwyWLv9FAcZBpg+AcDCEBjrJ4+K5SwzYrx1c7gaQZ8sXhYopOXIM1LAlR7qMGhxhYha+Q+sBy6ywsNQ==
-  dependencies:
-    "@pendle/constants" "^0.6.1"
-    ethers "^5.0.0"
 
 "@rollup/plugin-babel@^5.1.0":
   version "5.3.0"

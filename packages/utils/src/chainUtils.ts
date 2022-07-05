@@ -1,8 +1,82 @@
-import { BigNumber as BN, providers, utils } from 'ethers';
+import { BigNumber as BN, Contract, providers, utils } from 'ethers';
 import { EthConsts, MiscConsts } from '@pendle/constants';
 import { AbsentProviderError, InvalidChainIdError, InvalidAddressError } from './exceptions';
 import type { Address, ProviderOrSigner } from './types';
+import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
+import {} from '@nomiclabs/hardhat-ethers/src/internal/type-extensions';
+import hre from 'hardhat';
 
+// TODO
+
+export async function verifyContract(contract: string, constructor: any[]) {
+  await hre.run('verify:verify', {
+    address: contract,
+    constructorArguments: constructor,
+  });
+}
+
+export async function deploy(deployer: SignerWithAddress, contractName: string, args: any[], verify?: boolean) {
+  const contractFactory = await hre.ethers.getContractFactory(contractName);
+  const contract = await contractFactory.connect(deployer).deploy(...args);
+  await contract.deployed();
+  console.log(`${contractName} deployed at address: ${contract.address}`);
+
+  if (verify === true) {
+    await verifyContract(contract.address, args);
+  }
+  return contract as Contract;
+}
+
+export async function _impersonateAccount(address: string) {
+  await hre.network.provider.request({
+    method: 'hardhat_impersonateAccount',
+    params: [address],
+  });
+}
+
+export async function impersonateSomeone(user: string) {
+  await _impersonateAccount(user);
+  return await hre.ethers.getSigner(user);
+}
+
+export async function getContractByInterfaceName(contractName: string, contractAddress: Address) {
+  return await hre.ethers.getContractAt(contractName, contractAddress);
+}
+
+export async function getContractByAbi(abi: any[], contractAddress: Address) {
+  return await hre.ethers.getContractAt(abi, contractAddress);
+}
+
+// need an mapping
+let apiMap = new Map<number, string>();
+let apikeyName = new Map<number, string>();
+export async function getAbiByAddressAndChainId(chainid: number, contractAddress: string) {
+  try {
+    const response = await fetch(
+      `${apiMap.get(chainid)}&address=${contractAddress}&apikey=${apikeyName.get(chainid)}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`Error! status: ${response.status}`);
+    }
+    let result = await response.json();
+    return result;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log('error message: ', error.message);
+      return error.message;
+    } else {
+      console.log('unexpected error: ', error);
+      return 'An unexpected error occurred';
+    }
+  }
+}
+// END
 export function validateAndParseChainId(chainId?: string | number): number {
   const chainIdNumber = Number(chainId);
   if (!Number.isSafeInteger(chainIdNumber)) {
