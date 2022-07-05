@@ -48,8 +48,7 @@ export async function getContractByAbi(abi: any[], contractAddress: Address) {
 }
 
 // need an mapping
-let apiMap = new Map<number, string>();
-let apikeyName = new Map<number, string>();
+
 export async function getAbiByAddressAndChainId(chainid: number, contractAddress: string) {
   try {
     const response = await fetch(
@@ -76,6 +75,7 @@ export async function getAbiByAddressAndChainId(chainid: number, contractAddress
     }
   }
 }
+
 // END
 export function validateAndParseChainId(chainId?: string | number): number {
   const chainIdNumber = Number(chainId);
