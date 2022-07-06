@@ -45,7 +45,8 @@
     "@nomiclabs/hardhat-waffle": "^2.0.3",
     "@openzeppelin/contracts": "^4.7.0",
     "ethereum-waffle": "^3.4.4",
-    "fetch": "^1.1.0"
+    "fetch": "^1.1.0",
+    "fs": "^0.0.1-security"
   },
   "publishConfig": {
     "access": "restricted"

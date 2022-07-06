@@ -47,8 +47,6 @@ export async function getContractByAbi(abi: any[], contractAddress: Address) {
   return await hre.ethers.getContractAt(abi, contractAddress);
 }
 
-// need an mapping
-
 export async function getAbiByAddressAndChainId(chainid: number, contractAddress: string) {
   try {
     let url = `${getApi(chainid)}&address=${contractAddress}&apikey=${getKey(chainid)}`;
@@ -74,7 +72,12 @@ export async function getAbiByAddressAndChainId(chainid: number, contractAddress
     }
   }
 }
-
+//Time stuff
+// in second
+export async function advanceTime(duration: number) {
+  await hre.ethers.provider.send('evm_increaseTime', [duration]);
+  await hre.network.provider.send('evm_mine');
+}
 // END
 export function validateAndParseChainId(chainId?: string | number): number {
   const chainIdNumber = Number(chainId);
